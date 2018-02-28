@@ -31,7 +31,14 @@ function usersTableCtrl($scope, $http, $timeout) {
       }
       var barChart = {
         data: [],
-        labels: []
+        labels: [],
+        options: {
+          scales: {
+              xAxes: [{
+                  display: false
+              }]
+          }
+        }
       }
       barData.forEach(function(claim) {
         barChart['data'].push(claim.balance);

@@ -1,0 +1,59 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card" ng-controller="contractCtrl">
+        <div class="card-header">
+          <strong>How to claim with Pyrus</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert alert-danger" role="alert" ng-if="airdrop.lastBlock < airdrop.startBlock">
+                The claim period has not started yet.
+              </div>
+              <div class="alert alert-danger" role="alert" ng-if="airdrop.lastBlock >= airdrop.endBlock">
+                The claim period has finished.
+              </div>
+              <p> Ubiq makes use of a open proposal process to allow the community to determine what projects they would like to see built and deployed to the network next, and how development funds will be allocated. To participate in the governance system Escher tokens are required. To signal for an Escher airdrop, please complete the following steps:
+                <ul>
+                  <li>Go to the <a href="https://pyrus.ubiqsmart.com/#contracts" target="_blank">Contracts</a> page in Pyrus</li>
+                  <li>In the <code>Contract Address</code> field insert the contract address displayed on the claim interface</li>
+                  <li>In the ABI / JSON Interface enter the following:</li>
+                  <div class="input-group">
+                    <pre class="form-control">{{ abi.json }}</pre>
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" ngclipboard data-clipboard-text="{{ abi.json }}" ngclipboard-success="clipboardSuccess(e);" type="button"><i class="fa fa-copy"></i></button>
+                    </div>
+                  </div>
+                  <li>Press <code>Access</code></li>
+                  <li>Select function -> <code>claim</code></li>
+                  <li>Send the transaction. <strong>No UBQ is required to send</strong>, but please ensure you have a very small amount of UBQ (~0.001) to cover the gas fee. The recommended gas limit is 100000.</li>
+                </ul>
+                <i>
+                  Note: No UBQ are transferred when signaling, the claim mechanism simply registers your indication to your address. As such, the entire UBQ balance stored at that address would be counted towards the airdrop. Once UBQ is transferred to a new address, the airdrop claim total would be lowered by a corresponding amount.
+                </i>
+              </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <strong>Contract Address</strong>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="addressIdenticon med inline" blockie-address="{{ airdrop.contract }}" watch-var="airdrop.contract" style="margin:auto;margin-right:5px;"></div>
+                    </div>
+                    <input id="contractAddress" class="form-control" type="text" value="{{ airdrop.contract }}" style="" readonly></input>
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" ngclipboard data-clipboard-text="{{ airdrop.contract }}" ngclipboard-success="clipboardSuccess(e);" type="button"><i class="fa fa-copy"></i></button>
+                    </div>
+                    <growl-notification ng-if="showClipboardNotification">
+                      Copied to clipboard
+                    </growl-notification>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

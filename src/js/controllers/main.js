@@ -24,10 +24,9 @@ function usersTableCtrl($scope, $http, $timeout) {
 
   $http.get('https://escherdrop.ubiqscan.io/getclaims/0xd884cD05a38A64239c430eD2eF83df20E496aCE4').
     then(function(success) {
-      $scope.users = success.data;
       var barData = success.data;
-      if (barData.length > 20) {
-        barData.slice(Math.max(barData.length - 20, 1));
+      if (barData.length > 30) {
+        barData = barData.slice(barData.length - 30);
       }
       var barChart = {
         data: [],
@@ -45,6 +44,8 @@ function usersTableCtrl($scope, $http, $timeout) {
         barChart['labels'].push(claim.address);
       });
       $scope.bar = barChart;
+      $scope.users = success.data;
+      $scope.users.reverse();
     }, function(error) {
       // log error
     });

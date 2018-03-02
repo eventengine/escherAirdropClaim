@@ -112,6 +112,7 @@
               <th class="text-center" style="width:60px;"><i class="icon-people"></i></th>
               <th>Address</th>
               <th class="text-center">UBQ</th>
+              <th class="text-center">ESCH</th>
             </tr>
           </thead>
           <tbody ng-controller="usersTableCtrl">
@@ -124,6 +125,9 @@
               </td>
               <td class="text-center">
                 <strong>{{ user.balance }}</strong>
+              </td>
+              <td class="text-center">
+                <strong>{{ user.escher }}</strong>
               </td>
             </tr>
           </tbody>

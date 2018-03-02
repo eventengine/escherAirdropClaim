@@ -46,6 +46,9 @@ function usersTableCtrl($scope, $http, $timeout) {
       $scope.bar = barChart;
       $scope.users = success.data;
       $scope.users.reverse();
+      $scope.users.forEach(function(claim) {
+        claim.escher = (claim.balance * 12).toFixed(8);
+      })
     }, function(error) {
       // log error
     });
